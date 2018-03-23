@@ -1,6 +1,6 @@
-package org.usfirst.frc.team949.robot.autocommands;
+package com.team949.auto;
 
-import org.usfirst.frc.team949.robot.Robot;
+import com.team949.Robot;
 
 import edu.wpi.first.wpilibj.command.TimedCommand;
 

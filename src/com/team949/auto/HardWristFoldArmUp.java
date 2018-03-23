@@ -1,15 +1,20 @@
-package org.usfirst.frc.team949.robot.autocommands;
+package com.team949.auto;
+
+import com.team949.Robot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class RightSideRightSwitch extends CommandGroup {
+public class HardWristFoldArmUp extends CommandGroup {
 
-    public RightSideRightSwitch() {
-    	addSequential(new HardMove(0.5));
-    	addSequential(new HardTurn(1.0, -90.0));
+    public HardWristFoldArmUp() {
+    	requires(Robot.arm);
+    	requires(Robot.hand);
+    	
+    	addSequential(new HardArmMove(1.0, 0.6));
+    	addSequential(new HardWristMove(0.6, 0.5));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

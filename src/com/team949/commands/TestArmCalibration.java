@@ -1,11 +1,11 @@
-package org.usfirst.frc.team949.robot.commands;
+package com.team949.commands;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
-import org.usfirst.frc.team949.robot.Robot;
+import com.team949.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;

@@ -1,5 +1,5 @@
 
-package org.usfirst.frc.team949.robot;
+package com.team949;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -12,13 +12,18 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team949.robot.autocommands.HardTurn;
-import org.usfirst.frc.team949.robot.commands.JoyStickDrive;
+import java.io.IOException;
 
-import org.usfirst.frc.team949.robot.subsystems.Arm;
-import org.usfirst.frc.team949.robot.subsystems.Climber;
-import org.usfirst.frc.team949.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team949.robot.subsystems.Pickup;
+import org.json.simple.parser.ParseException;
+
+import com.team949.auto.HardArmMove;
+import com.team949.auto.HardMove;
+import com.team949.auto.HardTurn;
+import com.team949.commands.JoystickDrive;
+import com.team949.subsystems.Arm;
+import com.team949.subsystems.Climber;
+import com.team949.subsystems.DriveTrain;
+import com.team949.subsystems.Hand;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,7 +35,7 @@ import org.usfirst.frc.team949.robot.subsystems.Pickup;
 public class Robot extends TimedRobot {
 	// Please keep these as public unless you have a good reason.
 	public static final DriveTrain driveTrain = new DriveTrain();
-	public static final Pickup pickup = new Pickup();
+	public static final Hand hand = new Hand();
 	public static final Arm arm = new Arm();
 	public static final Climber climber = new Climber();
 	public static OI oi;
@@ -112,8 +117,6 @@ public class Robot extends TimedRobot {
 //		case "Default Auto": 
 //		default:
 //		autonomousCommand = new ExampleCommand(); break; }
-		autonomousCommand = new HardTurn(10.0, 180.0);
-		
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
 			autonomousCommand.start();
@@ -254,8 +257,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		Scheduler.getInstance().run(); // Keep this
-		
+		System.out.println("End: " + driveTrain.l0.getSelectedSensorPosition(0)+", "+driveTrain.r0.getSelectedSensorPosition(0));
+		//Scheduler.getInstance().run(); // Keep this
 //		double leftRate = driveTrain.getLeftVelocity();
 //		double rightRate = driveTrain.getRightVelocity();
 //		if(leftRate > leftMaxVelocity) 

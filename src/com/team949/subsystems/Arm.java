@@ -1,11 +1,11 @@
-package org.usfirst.frc.team949.robot.subsystems;
-
-import org.usfirst.frc.team949.robot.Robot;
-import org.usfirst.frc.team949.robot.RobotMap;
-import org.usfirst.frc.team949.robot.commands.JoyStickArm;
+package com.team949.subsystems;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.team949.Robot;
+import com.team949.RobotMap;
+import com.team949.commands.JoyStickArm;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Subsystem;

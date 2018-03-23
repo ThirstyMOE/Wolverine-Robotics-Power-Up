@@ -1,4 +1,4 @@
-package org.usfirst.frc.team949.robot;
+package com.team949;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;

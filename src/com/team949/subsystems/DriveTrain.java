@@ -1,20 +1,15 @@
-package org.usfirst.frc.team949.robot.subsystems;
+package com.team949.subsystems;
 
-import org.usfirst.frc.team949.robot.RobotMap;
-import org.usfirst.frc.team949.robot.commands.JoyStickDrive;
-
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.team949.Robot;
+import com.team949.RobotMap;
+import com.team949.commands.JoystickDrive;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.PIDSourceType;
-import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
@@ -31,11 +26,11 @@ public class DriveTrain extends Subsystem {
 	private SpeedControllerGroup r;
 	private SpeedControllerGroup l;
 
-	private WPI_TalonSRX r0, r1, l0, l1;
+	public WPI_TalonSRX r0, r1, l0, l1;
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		setDefaultCommand(new JoyStickDrive());
+		setDefaultCommand(new JoystickDrive());
 	}
 
 	public DriveTrain() {
@@ -47,8 +42,18 @@ public class DriveTrain extends Subsystem {
 		this.l0 = new WPI_TalonSRX(RobotMap.leftDriveMotor1);
 		this.l1 = new WPI_TalonSRX(RobotMap.leftDriveMotor2);
 
+		// Set slaves r1 and l1 to follow masters r0 and l0
+		
 		setUpEncoders();
-
+		// 683 u/100ms, 745u/ 100ms 24% output
+		// 0.358724, 0.328870
+		l0.config_kF(0, 0.328870, 0);
+		r0.config_kF(0, 0.358724, 0);
+		l0.config_kP(0, 10./4096, 0);
+		r0.config_kP(0, 10./4096, 0);
+		l0.config_kD(0, 100000./4096, 0);
+		r0.config_kD(0, 100000./4096, 0);
+		
 		this.r = new SpeedControllerGroup(r0, r1);
 		this.l = new SpeedControllerGroup(l0, l1);
 
@@ -65,7 +70,7 @@ public class DriveTrain extends Subsystem {
 		r0.setSensorPhase(false);
 		r0.setSelectedSensorPosition(0, 0, 0);
 		l0.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
-		l0.setSensorPhase(true);
+		l0.setSensorPhase(false);
 		l0.setSelectedSensorPosition(0, 0, 0);
 	}
 

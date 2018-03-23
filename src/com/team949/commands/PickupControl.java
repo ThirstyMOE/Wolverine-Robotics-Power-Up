@@ -1,7 +1,11 @@
-package org.usfirst.frc.team949.robot.commands;
+package com.team949.commands;
 
-import org.usfirst.frc.team949.robot.Constants;
-import org.usfirst.frc.team949.robot.Robot;
+import javax.xml.bind.helpers.AbstractUnmarshallerImpl;
+
+import org.omg.CORBA.WCharSeqHolder;
+
+import com.team949.Constants;
+import com.team949.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -15,7 +19,7 @@ public class PickupControl extends Command {
 
 	public PickupControl() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.pickup);
+		requires(Robot.hand);
 	}
 
 	// Called just before this Command runs the first time
@@ -33,40 +37,35 @@ public class PickupControl extends Command {
 		// Hand logic
 		if (Robot.oi.isOperatorButtonDown(12)) // Out
 		{
-			Robot.pickup.setBothMotors(-1.0);
+			Robot.hand.setIntake(-1.0);
 		} else if (Robot.oi.isOperatorButtonDown(2)) // slow out
 		{
-			Robot.pickup.setBothMotors(-.9);
+			Robot.hand.setIntake(-.9);
 		} else if (Robot.oi.isOperatorButtonDown(11)) // In
 		{
-			Robot.pickup.setBothMotors(1.0);
-		} else if (Robot.oi.isOperatorButtonDown(10)) // Right
-		{
-			Robot.pickup.setRotateBothMotors(0.7);
-		} else if (Robot.oi.isOperatorButtonDown(9)) // Left
-		{
-			Robot.pickup.setRotateBothMotors(-0.7);
+			Robot.hand.setIntake(1.0);
 		} else {
-			Robot.pickup.stop();
+			Robot.hand.stop();
 		}
 
 		// Wrist Logic (Down)
 		double zInput = Robot.oi.getOperatorZ();
 		zInput = (Math.abs(zInput) < Z_THRESHOLD ? 0
 				: (Math.signum(zInput) * ((Math.abs(zInput) - Z_THRESHOLD) / (1 - Z_THRESHOLD))));
-		Robot.pickup.setWrist(WRIST_MULTIPLIER * zInput);
+		Robot.hand.setWrist(WRIST_MULTIPLIER * zInput);
 
 		// Grab logic
-//		if (Robot.oi.operatorStick.getRawButtonPressed(1)) {
-//			Robot.pickup.extend();
-//		}
-//		if (Robot.oi.operatorStick.getRawButtonPressed(2)) {
-//			Robot.pickup.unextend();
-//
-//		}
-//		if (Robot.oi.operatorStick.getRawButtonReleased(1) || Robot.oi.operatorStick.getRawButtonReleased(2)) {
-//			Robot.pickup.die();
-//		}
+		// if (Robot.oi.operatorStick.getRawButtonPressed(1)) {
+		// Robot.pickup.extend();
+		// }
+		// if (Robot.oi.operatorStick.getRawButtonPressed(2)) {
+		// Robot.pickup.unextend();
+		//
+		// }
+		// if (Robot.oi.operatorStick.getRawButtonReleased(1) ||
+		// Robot.oi.operatorStick.getRawButtonReleased(2)) {
+		// Robot.pickup.die();
+		// }
 
 	}
 

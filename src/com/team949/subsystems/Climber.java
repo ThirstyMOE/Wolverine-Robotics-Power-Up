@@ -1,9 +1,8 @@
-package org.usfirst.frc.team949.robot.subsystems;
-
-import org.usfirst.frc.team949.robot.RobotMap;
-import org.usfirst.frc.team949.robot.commands.ClimberControl;
+package com.team949.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.team949.RobotMap;
+import com.team949.commands.Climb;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -19,7 +18,7 @@ public class Climber extends Subsystem {
 	private Servo hookLock;
 	
 	public void initDefaultCommand() {
-		setDefaultCommand(new ClimberControl());
+		setDefaultCommand(new Climb());
 	}
 
 	public Climber() {

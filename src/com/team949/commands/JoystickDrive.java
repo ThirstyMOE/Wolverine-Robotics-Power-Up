@@ -1,13 +1,13 @@
-package org.usfirst.frc.team949.robot.commands;
+package com.team949.commands;
 
-import org.usfirst.frc.team949.robot.Robot;
+import com.team949.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * Teleop command to drive the robot via Joystick.
  */
-public class JoyStickDrive extends Command {
+public class JoystickDrive extends Command {
 
 	private final static double Y_THRESHOLD = 0.3;
 	private final static double Z_THRESHOLD = 0.5;
@@ -15,7 +15,7 @@ public class JoyStickDrive extends Command {
 	private final static double Y_NERF = 1.0;
 	private final static double Z_NERF = 0.6;
 
-	public JoyStickDrive() {
+	public JoystickDrive() {
 		requires(Robot.driveTrain);
 	}
 

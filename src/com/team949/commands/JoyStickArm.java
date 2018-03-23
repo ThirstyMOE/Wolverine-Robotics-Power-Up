@@ -1,8 +1,8 @@
-package org.usfirst.frc.team949.robot.commands;
+package com.team949.commands;
 
 import java.io.File;
 
-import org.usfirst.frc.team949.robot.Robot;
+import com.team949.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 

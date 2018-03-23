@@ -1,26 +1,23 @@
-package org.usfirst.frc.team949.robot.autocommands;
+package com.team949.auto;
 
-import org.usfirst.frc.team949.robot.Robot;
+import com.team949.Robot;
 
 import edu.wpi.first.wpilibj.command.TimedCommand;
 
 /**
  *
  */
-public class HardWristMove extends TimedCommand {
+public class Wait extends TimedCommand {
 
-	private double moveValue;
-	
-    public HardWristMove(double timeout, double moveValue) {
-		super(timeout);
-		// TODO Auto-generated constructor stub
-		requires(Robot.pickup);
-		this.moveValue = moveValue;
-	}
-    
+    public Wait(double timeout) {
+        super(timeout);
+        // Use requires() here to declare subsystem dependencies
+        requires(Robot.driveTrain);
+    }
+
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.pickup.setWrist(moveValue);
+    	Robot.driveTrain.stop();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -29,7 +26,7 @@ public class HardWristMove extends TimedCommand {
 
     // Called once after timeout
     protected void end() {
-    	Robot.pickup.setWrist(0.0);
+    	
     }
 
     // Called when another command which requires one or more of the same

@@ -1,17 +1,16 @@
-package org.usfirst.frc.team949.robot.autocommands;
+package com.team949.auto;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class LeftSideRightSwitch extends CommandGroup {
+public class LeftSideLeftSwitch extends CommandGroup {
 
-    public LeftSideRightSwitch() {
-    	addSequential(new HardTurn(1.0, 90));
-    	addSequential(new HardMove(1.0));
-    	addSequential(new HardTurn(1.0, 0.0));
-    	addSequential(new RightSideRightSwitch());
+    public LeftSideLeftSwitch() {
+    	addSequential(new HardMove(0.5));
+    	addSequential(new HardTurn(1.0, 90.0));
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
