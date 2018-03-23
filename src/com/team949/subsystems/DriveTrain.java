@@ -129,7 +129,35 @@ public class DriveTrain extends Subsystem {
 	public boolean angleWithinTolerance(double targetAngle) 
 	{
 		final double tolerance = 3.0;
-		DriverStation.reportWarning("" + g.getAngle(), false);
 		return (Math.abs(targetAngle - g.getAngle()) <= tolerance) && (Math.abs(g.getRate()) < 1);
+	}
+	
+	/**
+	 * 
+	 * @param distance Units are *****
+	 */
+	public void encoderPMove(double distance) 
+	{
+		double encDistLeft = getLeftPosition();
+		double encDistRight = getRightPosition();
+		
+		double leftMove = distance - encDistLeft;
+		double rightMove = distance - encDistRight;
+		
+		double averageMove = (leftMove + rightMove) / 2.0;
+		
+		final double maximumMoveValue = 0.6;
+		final double kPMove = 0.07;
+		
+		if ((averageMove * kPMove) > maximumMoveValue) { // Overshoot
+			//leftMove = leftMove / maximumMove
+			
+			this.tank(maximumMoveValue, maximumMoveValue);
+		} else if ((averageMove * kPMove) < -maximumMoveValue) { // Undershoot
+			this.tank(-maximumMoveValue, -maximumMoveValue);
+		} else {
+			this.tank(leftMove * kPMove, rightMove * kPMove);
+		}
+
 	}
 }

@@ -8,11 +8,16 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class MiddleSideLeftSwitch extends CommandGroup {
 
     public MiddleSideLeftSwitch() {
-    	addSequential(new HardTurn(1.0, -90.0)); // TODO: Does ( - ) value actually wrap around?
     	addSequential(new HardMove(0.5));
-    	addSequential(new HardTurn(1.0, 0.0));
-    	addSequential(new LeftSideLeftSwitch());
-        // Add Commands here:
+    	addSequential(new HardTurn(1.0, -90.0)); // TODO: Does ( - ) value actually wrap around?
+    	addSequential(new HardMove(1.0));
+    	addSequential(new HardTurn(1.0, 0.0)); // Face to move forward
+    	addSequential(new HardMove(0.5));
+    	addSequential(new HardTurn(1.0, 90.0)); // Face switch from left side
+    	
+    	addSequential(new HardMove(0.2)); // Move in flush with switch
+    	
+    	// Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.

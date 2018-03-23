@@ -14,11 +14,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import java.io.IOException;
 
-import org.json.simple.parser.ParseException;
-
 import com.team949.auto.HardArmMove;
 import com.team949.auto.HardMove;
 import com.team949.auto.HardTurn;
+import com.team949.auto.MiddleSideLeftSwitch;
 import com.team949.commands.JoystickDrive;
 import com.team949.subsystems.Arm;
 import com.team949.subsystems.Climber;
@@ -117,6 +116,9 @@ public class Robot extends TimedRobot {
 //		case "Default Auto": 
 //		default:
 //		autonomousCommand = new ExampleCommand(); break; }
+		
+		autonomousCommand = new MiddleSideLeftSwitch();
+		
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
 			autonomousCommand.start();
